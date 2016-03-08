@@ -36,6 +36,26 @@ This will deploy a pod to your cluster and create a copy of the spec file for yo
 `kubectl delete -f mongo-rc-1.yaml`
 
 
+### Useful Kubernetes commands
+
+`kubectl get po,no -o wide`                                               
+```
+NAME            READY     STATUS              RESTARTS   AGE       NODE                        IP
+mongo-1-w7paz   2/2       Running             0          43m       ip-10-0-0-96.ec2.internal   <none>
+mongo-2-ytmn1   2/2       Running             0          2h        ip-10-0-0-97.ec2.internal   <none>
+mongo-3-527pz   0/2       ContainerCreating   0          10s       ip-10-0-0-98.ec2.internal   <none>
+```
+`kubectl describe po mongo-1-w7paz`
+This will output the pod ip address and information about the volyme
+under Volumes you will see **<Volume Type Not Found>** instead of Flocker but it will be working
+Volumes:
+  mongo-persistent-storage:
+  <Volume Type Not Found>
+  default-token-y21eu:
+    Type:	Secret (a secret that should populate this volume)
+    SecretName:	default-token-y21eu
+
+
 ###  To use emptydir (no flocker)
 
 There are no make commands yet for this I have included 4 example replication controller templates for using emptydir in /emptydir
