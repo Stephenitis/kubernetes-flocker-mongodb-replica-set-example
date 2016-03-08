@@ -21,19 +21,19 @@ INITIAL_NODE_ID=ec570512
 ###  3. create volumes
 I created a make file to make creation of volumes easier based on how many active mongo pods are currently deployed`
 ```
-`make create-volume`
+$ make create-volume
 
-flockerctl --control-service=ec2-52-86-240-175.compute-1.amazonaws.com create -m name=flockermongorc-3 -s 100G --node=ec570512
-created dataset in configuration, manually poll state with 'flocker-volumes list' to see it show up.
+# flockerctl --control-service=ec2-52-86-240-175.compute-1.amazonaws.com create -m name=flockermongorc-3 -s 100G --node=ec570512
+# created dataset in configuration, manually poll state with 'flocker-volumes list' to see it show up.
 ```
 
 ###  4. deploy a replica pod
-`make add-replica`
+$ `make add-replica`
 
 This will deploy a pod to your cluster and create a copy of the spec file for you to manually use if needed from a template file.
 
-kubectl create -f mongo-rc-1.yaml
-kubectl delete -f mongo-rc-1.yaml
+`kubectl create -f mongo-rc-1.yaml`
+`kubectl delete -f mongo-rc-1.yaml`
 
 
 ###  To use emptydir (no flocker)
